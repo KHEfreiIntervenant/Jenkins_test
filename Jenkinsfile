@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('NPM Build') {
           steps {
-            sh "npm install"
-            sh "npm start"
+            sh "docker-compose -build -d up"
           }
         }
     }
