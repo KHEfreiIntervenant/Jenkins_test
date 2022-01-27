@@ -5,6 +5,6 @@ ADD . /usr/src/app
 
 RUN npm install
 
-EXPOSE 8083
+EXPOSE 3000
 
 CMD ["npm", "start"]
