@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('NPM Build') {
           steps {
-            sh "docker-compose -build -d up"
+            sh "docker-compose up -d"
           }
         }
     }
