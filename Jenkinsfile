@@ -12,6 +12,11 @@ pipeline {
             sh "docker-compose down"
           }
         }
+        stage('Running') {
+          steps {
+            sh "docker-compose -d up"
+          }
+        }
     }
     // post {
     //     always {
