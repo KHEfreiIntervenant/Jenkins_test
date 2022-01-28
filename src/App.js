@@ -8,6 +8,7 @@ import AddTask from "./components/add-task.component";
 import Task from "./components/task.component";
 import TasksList from "./components/tasks-list.component";
 
+// this is a single line comment
 class App extends Component {
   render() {
     return (
