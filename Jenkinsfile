@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Running') {
           steps {
-            sh "docker-compose -f docker-compose.yml -d up"
+            sh "docker-compose -f docker-compose.yml up -d"
           }
         }
     }
