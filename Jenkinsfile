@@ -2,10 +2,20 @@ pipeline {
     agent any
  
     stages {
-        stage('NPM Build') {
+        stage('Testing') {
           steps {
-            sh "docker-compose up -d"
+            sh "docker-compose -f docker-compose-test.yml up"
+          }
+        }
+        stage('Stopping, Tests passed') {
+          steps {
+            sh "docker-compose down"
           }
         }
     }
+    // post {
+    //     always {
+    //         sh "docker-compose down -v"
+    //     }
+    // }
 }
