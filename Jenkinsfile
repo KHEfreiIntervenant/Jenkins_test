@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Testing') {
           steps {
-            sh "docker-compose -f docker-compose-test.yml up"
+            sh "docker-compose -f docker-compose-test.yml up --build"
           }
         }
         stage('Stopping, Tests passed') {
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Running') {
           steps {
-            sh "docker-compose -f docker-compose.yml up -d"
+            sh "docker-compose -f docker-compose.yml up --build -d"
           }
         }
     }
