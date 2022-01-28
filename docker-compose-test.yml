@@ -4,6 +4,5 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.test
-    image: tasksAppTest
     ports:
       - "3000:3000"
