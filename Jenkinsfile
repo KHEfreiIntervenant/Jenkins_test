@@ -18,7 +18,7 @@ pipeline {
                 
                 withCredentials([gitUsernamePassword(credentialsId: 'github-credentials',
                  gitToolName: 'git-tool')]) {
-                  sh 'git branch release'
+                  sh 'if [ ! `git branch --list release` ] then git branch release fi'
                     sh 'git checkout release'
                     sh 'git push origin release'
                 }
