@@ -10,7 +10,18 @@ pipeline {
         stage('push again'){
             steps{
                 
-                checkout master
+//                 git(
+//                    url: 'git@github.com:KHEfreiIntervenant/Jenkins_test.git',
+//                    credentialsId: 'github-pushes',
+//                    branch: "main"
+//                 )
+                
+                withCredentials([gitUsernamePassword(credentialsId: 'github-credentials',
+                 gitToolName: 'git-tool')]) {
+                  sh 'git branch release'
+                    sh 'git checkout release'
+                    sh 'git push origin release'
+                }
 //                 withCredentials([usernamePassword(credentialsId: 'github-pushes')]) {
 //                         sh "git branch release"
 //                         sh "git push https://github.com/KHEfreiIntervenant/Jenkins_test release"
