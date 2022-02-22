@@ -22,8 +22,9 @@ pipeline {
 //                     sh 'git checkout release'
 //                     sh 'git push origin release'
 //                 }
-                withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY',passphraseVariable: '7ayotyssh', usernameVariable: 'khodor.hammoud@intervenats.efrei.net')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY')]) {
                   sh '''
+                  GIT_SSH_COMMAND="ssh -i $SSH_KEY"
                   if [ ! `git branch --list release` ]
                   then git branch release
                   fi
