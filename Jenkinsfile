@@ -9,11 +9,13 @@ pipeline {
         }
         stage('push again'){
             steps{
-                sh "git branch release"
-                sh "git push origin release"
-//                 withCredentials([usernamePassword(credentialsId: 'github-pushes')]) {
+                
+                
+                withCredentials([usernamePassword(credentialsId: 'github-pushes')]) {
+                        sh "git branch release"
+                        sh "git push https://github.com/KHEfreiIntervenant/Jenkins_test release"
 //                         sh('git push https://github.com/KHEfreiIntervenant/Jenkins_test')
-//                     }
+                    }
             }
         }
     } 
