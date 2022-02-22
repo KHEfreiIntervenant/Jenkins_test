@@ -23,9 +23,15 @@ pipeline {
 //                     sh 'git push origin release'
 //                 }
                 withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes')]) {
-                  sh 'if [ ! `git branch --list release` ]; then git branch release; fi'
-                    sh 'git checkout release'
-                    sh 'git push origin release'
+                  sh '''
+                  if [ ! `git branch --list release` ]
+                  then git branch release
+                  fi
+                  git checkout release
+                  git commit --allow-empty -m "test withCredentials"
+                  git push origin release
+                  sh
+                  '''
                 }
 //                 withCredentials([usernamePassword(credentialsId: 'github-pushes')]) {
 //                         sh "git branch release"
