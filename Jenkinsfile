@@ -15,7 +15,7 @@ pipeline {
 //                         sh "git branch release"
 //                         sh "git push https://github.com/KHEfreiIntervenant/Jenkins_test release"
 //                         sh('git push https://github.com/KHEfreiIntervenant/Jenkins_test')
-                    }
+//                     }
             }
         }
     } 
