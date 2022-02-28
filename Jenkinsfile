@@ -25,6 +25,14 @@ pipeline {
                 sshagent(['github-pushes']) {
                     sh 'git commit -m "test commit"'
                       sh "git push origin main"
+                    sh '''
+                    if [ ! `git branch --list release` ]
+                  then git branch release
+                  fi
+                  git checkout release
+                  git commit --allow-empty -m "test withCredentials"
+                  git push origin release
+                    '''
                 }
                 withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY')]) {
                   sh '''
@@ -38,7 +46,6 @@ pipeline {
                   git checkout release
                   git commit --allow-empty -m "test withCredentials"
                   git push origin release
-                  sh
                   '''
                 }
 //                 withCredentials([usernamePassword(credentialsId: 'github-pushes')]) {
