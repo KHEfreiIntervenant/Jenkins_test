@@ -1,10 +1,13 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('push to git') {
       steps {
-        echo 'this is pipeline step 1'
-        sh 'npm install .'
+        sh '''git branch release
+git checkout release
+git add *
+git commit -m "a new branch"
+git push origin release'''
       }
     }
 
