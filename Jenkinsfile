@@ -7,7 +7,7 @@ pipeline {
             sh "echo 'we are in'"
           }
         }
-        stage('push again'){
+        stage('push'){
             steps{
                 
 //                 git(
@@ -30,10 +30,15 @@ pipeline {
                   then git branch release
                   fi
                   git checkout release
+                  git commit -m "test commit"
                   git commit --allow-empty -m "test withCredentials"
                   git push origin release
                     '''
                 }
+            }
+        }
+        stage('push again'){
+            steps{
                 withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY')]) {
                   sh '''
                   git remote set-url origin git@github.com:KHEfreiIntervenant/Jenkins_test.git
