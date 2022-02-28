@@ -23,13 +23,16 @@ pipeline {
 //                     sh 'git push origin release'
 //                 }
                 sshagent(['github-pushes']) {
+                    sh 'git add *'
                     sh 'git commit -m "test commit"'
                       sh "git push origin main"
                     sh '''
                     if [ ! `git branch --list release` ]
                   then git branch release
                   fi
+                  
                   git checkout release
+                  git add *
                   git commit -m "test commit"
                   git commit --allow-empty -m "test withCredentials"
                   git push origin release
