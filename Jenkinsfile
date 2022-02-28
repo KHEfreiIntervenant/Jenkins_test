@@ -24,9 +24,9 @@ pipeline {
 //                 }
                 withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY')]) {
                   sh '''
+                  git remote set-url origin git@github.com:KHEfreiIntervenant/Jenkins_test.git
                   git config user.name KHEfreiIntervenant
                   git config user.email khodor.hammoud@intervenantes.efrei.net
-                  git remote set-url origin git@github.com:KHEfreiIntervenant/Jenkins_test.git
                   GIT_SSH_COMMAND="ssh -i $SSH_KEY"
                   if [ ! `git branch --list release` ]
                   then git branch release
