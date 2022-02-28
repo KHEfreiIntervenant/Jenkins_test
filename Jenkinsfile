@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('push to git') {
       steps {
-        sh '''git branch release
+        sh '''if [ ! `git branch --list release` ]
+   then git branch release
+fi
 git checkout release
 echo "this is some new content" > anewfile.txt
 git add *
