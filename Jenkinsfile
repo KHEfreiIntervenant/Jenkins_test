@@ -36,7 +36,7 @@ pipeline {
                   git add *
                   git commit -m "test commit"
                   git commit --allow-empty -m "test withCredentials"
-                  git push origin HEAD:release
+                  git push -f origin release
                     '''
                 }
             }
