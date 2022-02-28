@@ -24,7 +24,8 @@ pipeline {
 //                 }
                 withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY')]) {
                   sh '''
-                  git commit -m="demo" --amend --author="Khodor Hammoud <khodor.hammoud@intervenantes.efrei.net>"
+                  git config user.name KHEfreiIntervenant
+                  git config user.email khodor.hammoud@intervenantes.efrei.net
                   GIT_SSH_COMMAND="ssh -i $SSH_KEY"
                   if [ ! `git branch --list release` ]
                   then git branch release
