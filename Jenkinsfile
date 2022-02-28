@@ -22,6 +22,9 @@ pipeline {
 //                     sh 'git checkout release'
 //                     sh 'git push origin release'
 //                 }
+                sshagent(['github-pushes']) {
+                      sh "git push origin master2"
+                }
                 withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY')]) {
                   sh '''
                   git remote set-url origin git@github.com:KHEfreiIntervenant/Jenkins_test.git
