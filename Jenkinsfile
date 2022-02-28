@@ -24,6 +24,7 @@ pipeline {
 //                 }
                 withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY')]) {
                   sh '''
+                  git commit --amend --reset-author
                   GIT_SSH_COMMAND="ssh -i $SSH_KEY"
                   if [ ! `git branch --list release` ]
                   then git branch release
