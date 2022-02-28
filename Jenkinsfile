@@ -23,6 +23,7 @@ pipeline {
 //                     sh 'git push origin release'
 //                 }
                 sshagent(['github-pushes']) {
+                    sh 'git commit -m "test commit"'
                       sh "git push origin main"
                 }
                 withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY')]) {
