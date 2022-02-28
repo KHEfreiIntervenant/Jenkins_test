@@ -23,7 +23,7 @@ pipeline {
 //                     sh 'git push origin release'
 //                 }
                 sshagent(['github-pushes']) {
-                      sh "git push origin master2"
+                      sh "git push origin main"
                 }
                 withCredentials([sshUserPrivateKey(credentialsId: 'github-pushes',keyFileVariable: 'SSH_KEY')]) {
                   sh '''
