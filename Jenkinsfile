@@ -8,8 +8,26 @@ pipeline {
     }
 
     stage('Run docker') {
-      steps {
-        sh 'docker run -p 3000:3000 -d my-node-image'
+      parallel {
+        stage('Run docker') {
+          steps {
+            sh 'docker run -p 3000:3000 -d my-node-image'
+          }
+        }
+
+        stage('creating a release branch') {
+          steps {
+            sh '''if [ ! `git branch --list release` ]
+then git branch release
+fi
+
+git checkout release
+git add *
+git commit -m "test commit"
+git push origin release'''
+          }
+        }
+
       }
     }
 
