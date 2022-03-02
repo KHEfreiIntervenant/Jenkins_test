@@ -3,13 +3,13 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build . -p 3000:3000 -t "myNodeImage"'
+        sh 'docker build . -t "myNodeImage"'
       }
     }
 
     stage('Run docker') {
       steps {
-        sh 'docker run -d myNodeImage'
+        sh 'docker run -d myNodeImage -p 3000:3000'
       }
     }
 
