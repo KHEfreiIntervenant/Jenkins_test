@@ -9,7 +9,7 @@ pipeline {
 
     stage('Run docker') {
       steps {
-        sh 'docker run -d myNodeImage -p 3000:3000'
+        sh 'docker run -p 3000:3000 -d my-node-image'
       }
     }
 
