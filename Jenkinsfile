@@ -1,27 +1,21 @@
 pipeline {
   agent any
   stages {
-    stage('Stage 1') {
-      parallel {
-        stage('Stage 1') {
-          steps {
-            sh 'npm install .'
-          }
-        }
-
-        stage('Stage 1 parallel') {
-          steps {
-            sh 'docker build . -t mynewimage'
-            sh 'docker run mynewimage -p 3000:3000 '
-          }
-        }
-
+    stage('Build') {
+      steps {
+        sh 'docker build . -p 3000:3000 -t "myNodeImage"'
       }
     }
 
-    stage('Stage 2') {
+    stage('Run docker') {
       steps {
-        echo 'this is step 2'
+        sh 'docker run -d myNodeImage'
+      }
+    }
+
+    stage('Done') {
+      steps {
+        echo 'Done building'
       }
     }
 
