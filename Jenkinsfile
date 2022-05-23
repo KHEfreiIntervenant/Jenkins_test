@@ -7,7 +7,7 @@ pipeline {
           steps {
             echo 'Hello'
           }
-        }
+        } 
 
         stage('Print in parallel') {
           steps {
