@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Print hello') {
       parallel {
-        stage('Print hello') {
+        stage('Print hello') { 
           steps {
             echo 'Hello'
           }
